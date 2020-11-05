@@ -1,16 +1,15 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "PawnBase.h"
 #include "Components/CapsuleComponent.h"
 
 // Sets default values
 APawnBase::APawnBase()
 {
- 	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-	CapsuleComp =  CreateDefaultSubobject<UCapsuleComponent>(TEXT("Capsule Collider"));
+	CapsuleComp = CreateDefaultSubobject<UCapsuleComponent>(TEXT("Capsule Collider"));
 	RootComponent = CapsuleComp;
 
 	BaseMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Base Mesh"));
@@ -21,25 +20,22 @@ APawnBase::APawnBase()
 
 	ProjectileSpawnPoint = CreateDefaultSubobject<USceneComponent>(TEXT("Projectile Spawn Point"));
 	ProjectileSpawnPoint->SetupAttachment(TurretMesh);
-
 }
 
-void APawnBase::RotateTurretFunction(FVector LookAtTarget) 
+void APawnBase::RotateTurret(FVector LookAtTarget)
 {
+	FVector LookAtTargetCleaned = FVector(LookAtTarget.X, LookAtTarget.Y, TurretMesh->GetComponentLocation().Z);
+	FVector StartLocation = TurretMesh->GetComponentLocation();
 
-// Update rotation to face towards targets
-// TurretMesh->SetWorldRotation()...
-	
+	FRotator TurretRotation = FVector(LookAtTargetCleaned - StartLocation).Rotation();
+	TurretMesh->SetWorldRotation(TurretRotation);
 }
 
-void APawnBase::Fire() 
+void APawnBase::Fire()
 {
-	//Get ProjectileSpawnPoint location and rotation(location fires to rotation)	
+	//Get ProjectileSpawnPoint location and rotation(location fires to rotation)
 }
 
-void APawnBase::HandleDestruction() 
+void APawnBase::HandleDestruction()
 {
-	
 }
-
-
