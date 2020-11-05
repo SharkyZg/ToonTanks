@@ -13,18 +13,26 @@ class TOONTANKS_API APawnBase : public APawn
 {
 	GENERATED_BODY()
 
+private:
+	UPROPERTY(VisibleAnywhere, BluePrintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
+	UCapsuleComponent *CapsuleComp;
+	UPROPERTY(VisibleAnywhere, BluePrintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
+	UStaticMeshComponent *BaseMesh;
+	UPROPERTY(VisibleAnywhere, BluePrintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
+	UStaticMeshComponent *TurretMesh;
+	UPROPERTY(VisibleAnywhere, BluePrintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
+	USceneComponent *ProjectileSpawnPoint;
+
 public:
 	// Sets default values for this pawn's properties
 	APawnBase();
 
-
 private:
-	UPROPERTY(VisibleAnywhere, BluePrintReadOnly, Category = "Components", meta=(AllowPrivateAccess = "true"))
-	UCapsuleComponent *CapsuleComp;
-	UPROPERTY(VisibleAnywhere, BluePrintReadOnly, Category = "Components", meta=(AllowPrivateAccess = "true"))
-	UStaticMeshComponent *BaseMesh;
-	UPROPERTY(VisibleAnywhere, BluePrintReadOnly, Category = "Components", meta=(AllowPrivateAccess = "true"))
-	UStaticMeshComponent *TurretMesh;
-	UPROPERTY(VisibleAnywhere, BluePrintReadOnly, Category = "Components", meta=(AllowPrivateAccess = "true"))
-	USceneComponent *ProjectileSpawnPoint;
+	void RotateTurretFunction(FVector LookAtTarget);
+
+	void Fire();
+
+	virtual void HandleDestruction();
+
+
 };

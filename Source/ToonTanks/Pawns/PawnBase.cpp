@@ -24,4 +24,22 @@ APawnBase::APawnBase()
 
 }
 
+void APawnBase::RotateTurretFunction(FVector LookAtTarget) 
+{
+
+// Update rotation to face towards targets
+// TurretMesh->SetWorldRotation()...
+	
+}
+
+void APawnBase::Fire() 
+{
+	//Get ProjectileSpawnPoint location and rotation(location fires to rotation)	
+}
+
+void APawnBase::HandleDestruction() 
+{
+	
+}
+
 
