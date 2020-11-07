@@ -6,7 +6,7 @@
 #include "CoreMinimal.h"
 #include "HealthComponent.generated.h"
 
-class AThankGameModeBase;
+class ATankGameModeBase;
 
 UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
 class TOONTANKS_API UHealthComponent : public UActorComponent
@@ -18,7 +18,7 @@ private:
   float DefaultHealth = 100.0f;
   float Health = 0.0f;
 
-  AThankGameModeBase *GameModeRef;
+  ATankGameModeBase* GameModeRef;
 
 public:
   // Sets default values for this component's properties

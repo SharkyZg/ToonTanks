@@ -12,31 +12,29 @@ class AProjectileBase;
 UCLASS()
 class TOONTANKS_API APawnBase : public APawn
 {
-	GENERATED_BODY()
+  GENERATED_BODY()
 
 private:
-	// COMPONENTS
-	UPROPERTY(VisibleAnywhere, BluePrintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
-	UCapsuleComponent *CapsuleComp;
-	UPROPERTY(VisibleAnywhere, BluePrintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
-	UStaticMeshComponent *BaseMesh;
-	UPROPERTY(VisibleAnywhere, BluePrintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
-	UStaticMeshComponent *TurretMesh;
-	UPROPERTY(VisibleAnywhere, BluePrintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
-	USceneComponent *ProjectileSpawnPoint;
-	// VARIABLES
-	UPROPERTY(EditAnywhere, BluePrintReadOnly, Category = "Projectile Type", meta = (AllowPrivateAccess = "true"))
-	TSubclassOf<AProjectileBase> ProjectileClass;
+  // COMPONENTS
+  UPROPERTY(VisibleAnywhere, BluePrintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
+  UCapsuleComponent *CapsuleComp;
+  UPROPERTY(VisibleAnywhere, BluePrintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
+  UStaticMeshComponent *BaseMesh;
+  UPROPERTY(VisibleAnywhere, BluePrintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
+  UStaticMeshComponent *TurretMesh;
+  UPROPERTY(VisibleAnywhere, BluePrintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
+  USceneComponent *ProjectileSpawnPoint;
+  // VARIABLES
+  UPROPERTY(EditAnywhere, BluePrintReadOnly, Category = "Projectile Type", meta = (AllowPrivateAccess = "true"))
+  TSubclassOf<AProjectileBase> ProjectileClass;
+
 public:
-	// Sets default values for this pawn's properties
-	APawnBase();
+  // Sets default values for this pawn's properties
+  APawnBase();
+  virtual void HandleDestruction();
 
 protected:
-	void RotateTurret(FVector LookAtTarget);
+  void RotateTurret(FVector LookAtTarget);
 
-	void Fire();
-
-	virtual void HandleDestruction();
-
-
+  void Fire();
 };

@@ -12,43 +12,41 @@ class UCameraComponent;
 UCLASS()
 class TOONTANKS_API APawnTank : public APawnBase
 {
-	GENERATED_BODY()
+  GENERATED_BODY()
 
 private:
-	UPROPERTY(VisibleAnywhere, BluePrintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
-	USpringArmComponent *SpringArm;
-	UPROPERTY(VisibleAnywhere, BluePrintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
-	UCameraComponent *Camera;
+  UPROPERTY(VisibleAnywhere, BluePrintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
+  USpringArmComponent *SpringArm;
+  UPROPERTY(VisibleAnywhere, BluePrintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
+  UCameraComponent *Camera;
 
-	FVector MoveDirection;
-	FQuat RotationDirection;
+  FVector MoveDirection;
+  FQuat RotationDirection;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement", meta = (AllowPrivateAccess = "true"))
-	float MoveSpeed = 100.0f;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement", meta = (AllowPrivateAccess = "true"))
-	float RotateSpeed = 100.0f;
+  UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement", meta = (AllowPrivateAccess = "true"))
+  float MoveSpeed = 100.0f;
+  UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement", meta = (AllowPrivateAccess = "true"))
+  float RotateSpeed = 100.0f;
 
-	APlayerController* PlayerControllerRef;
+  APlayerController *PlayerControllerRef;
 
-	void CalculateMoveInput(float Value);
-	void CalculateRotateInput(float Value);
+  void CalculateMoveInput(float Value);
+  void CalculateRotateInput(float Value);
 
-	void Move();
-	void Rotate();
-
+  void Move();
+  void Rotate();
 
 public:
-	APawnTank();
+  APawnTank();
 
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+  // Called every frame
+  virtual void Tick(float DeltaTime) override;
 
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent *PlayerInputComponent) override;
+  // Called to bind functionality to input
+  virtual void SetupPlayerInputComponent(class UInputComponent *PlayerInputComponent) override;
+  virtual void HandleDestruction() override;
 
 protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
-	virtual void HandleDestruction() override;
+  // Called when the game starts or when spawned
+  virtual void BeginPlay() override;
 };
