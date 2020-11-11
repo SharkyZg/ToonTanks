@@ -7,51 +7,50 @@
 // Called when the game starts or when spawned
 void APawnTurret::BeginPlay()
 {
-    Super::BeginPlay();
+  Super::BeginPlay();
 
-    GetWorld()->GetTimerManager().SetTimer(FireRateTimerHandle, this, &APawnTurret::CheckFireCondition, FireRate, true);
+  GetWorld()->GetTimerManager().SetTimer(FireRateTimerHandle, this, &APawnTurret::CheckFireCondition, FireRate, true);
 
-    PlayerPawn = Cast<APawnTank>(UGameplayStatics::GetPlayerPawn(this, 0));
+  PlayerPawn = Cast<APawnTank>(UGameplayStatics::GetPlayerPawn(this, 0));
 }
 
-void APawnTurret::HandleDestruction() 
+void APawnTurret::HandleDestruction()
 {
-    Super::HandleDestruction();
-    Destroy();
+  Super::HandleDestruction();
+  Destroy();
 }
 
 // Called every frame
 void APawnTurret::Tick(float DeltaTime)
 {
-    Super::Tick(DeltaTime);
+  Super::Tick(DeltaTime);
 
-    if(!PlayerPawn || ReturnDistanceToPlayer() > FireRange)
-    {
-        return;
-    }
+  if (!PlayerPawn || ReturnDistanceToPlayer() > FireRange)
+  {
+    return;
+  }
 
-    RotateTurret(PlayerPawn->GetActorLocation());
+  RotateTurret(PlayerPawn->GetActorLocation());
 }
 void APawnTurret::CheckFireCondition()
 {
-    // If Player == null || is dead THEN BAIL!
-    if (!PlayerPawn)
-    {
-        return;
-    }
-    if(ReturnDistanceToPlayer() <= FireRange)
-    {
+  // If Player == null || is dead THEN BAIL!
+  if (!PlayerPawn || !PlayerPawn->GetIsPlayerAlive())
+  {
+    return;
+  }
+  if (ReturnDistanceToPlayer() <= FireRange)
+  {
     Fire();
-    }
-
+  }
 }
 
 float APawnTurret::ReturnDistanceToPlayer()
 {
-    if (!PlayerPawn)
-    {
-        return 0;
-    }
+  if (!PlayerPawn)
+  {
+    return 0;
+  }
 
-    return FVector::Dist(PlayerPawn->GetActorLocation(), GetActorLocation());
+  return FVector::Dist(PlayerPawn->GetActorLocation(), GetActorLocation());
 }
