@@ -20,6 +20,9 @@ private:
   UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Components", meta = (AllowPrivateAccess = "true"))
   UStaticMeshComponent *ProjectileMesh;
 
+  UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Components", meta = (AllowPrivateAccess = "true"))
+  UParticleSystemComponent *ParticleTrail;
+  // VARIABLES
   UPROPERTY(EditDefaultsOnly, Category = "Damage")
   TSubclassOf<UDamageType> DamageType;
 
@@ -30,7 +33,7 @@ private:
   float Damage = 50;
   UPROPERTY(EditAnywhere, Category = "Effects")
   UParticleSystem *HitParticle;
-
+  // FUNCTIONS
   UFUNCTION()
   void OnHit(UPrimitiveComponent *HitComp, AActor *OtherActor, UPrimitiveComponent *OtherComp, FVector NormalImpulse,
              const FHitResult &Hit);
