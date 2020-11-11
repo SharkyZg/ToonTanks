@@ -2,9 +2,9 @@
 
 #include "PawnBase.h"
 #include "Components/CapsuleComponent.h"
+#include "Kismet/GameplayStatics.h"
 #include "ToonTanks/Actors/ProjectileBase.h"
 #include "ToonTanks/Components/HealthComponent.h"
-#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 APawnBase::APawnBase()
@@ -47,11 +47,10 @@ void APawnBase::Fire()
   }
 }
 
-void APawnBase::HandleDestruction() {
+void APawnBase::HandleDestruction()
+{
 
   UGameplayStatics::SpawnEmitterAtLocation(this, DeathParticle, GetActorLocation());
-
   UGameplayStatics::PlaySoundAtLocation(this, DeathSound, GetActorLocation());
-
-  
+  GetWorld()->GetFirstPlayerController()->ClientPlayCameraShake(DeathShake);
 }

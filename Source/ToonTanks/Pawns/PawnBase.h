@@ -31,6 +31,9 @@ private:
   // VARIABLES
   UPROPERTY(EditAnywhere, BluePrintReadOnly, Category = "Projectile Type", meta = (AllowPrivateAccess = "true"))
   TSubclassOf<AProjectileBase> ProjectileClass;
+  
+  UPROPERTY(EditAnywhere, Category = "Effects")
+  TSubclassOf<UCameraShake> DeathShake;
 
   UPROPERTY(EditAnywhere, Category = "Effects")
   UParticleSystem *DeathParticle;
